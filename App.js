@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { SafeAreaView, StyleSheet, Text, View, Pressable } from 'react-native';
 
 function App() {
-  const [highlightPressed, setHighlightPressed] = useState(0);
-  const [opacityPressed, setOpacityPressed] = useState(0);
   const [withoutFeedbackPressed, setWithoutFeedbackPressed] = useState(0);
+  const [opacityPressed, setOpacityPressed] = useState(0);
+  const [highlightPressed, setHighlightPressed] = useState(0);
 
   return (
     <View style={styles.screen}>
@@ -16,18 +16,22 @@ function App() {
 
       <View style={styles.content}>
         <View style={styles.buttonRow}>
-          <Text style={styles.label}>Pressable as TouchableHiglight</Text>
+          <Text style={styles.label}>
+            Pressable as a TouchableWithoutFeedback
+          </Text>
           <Pressable
-            onPress={() => setHighlightPressed(highlightPressed + 1)}
+            onPress={() =>
+              setWithoutFeedbackPressed(withoutFeedbackPressed + 1)
+            }
             style={() => [styles.button]}>
             <Text style={styles.buttonText}>
-              {`${highlightPressed} pressed`}
+              {`${withoutFeedbackPressed} pressed`}
             </Text>
           </Pressable>
         </View>
 
         <View style={styles.buttonRow}>
-          <Text style={styles.label}>Pressable as TouchableOpacity</Text>
+          <Text style={styles.label}>Pressable as a TouchableOpacity</Text>
           <Pressable
             onPress={() => setOpacityPressed(opacityPressed + 1)}
             style={({ pressed }) => [
@@ -39,13 +43,9 @@ function App() {
         </View>
 
         <View style={styles.buttonRow}>
-          <Text style={styles.label}>
-            Pressable as TouchableWithoutFeedback
-          </Text>
+          <Text style={styles.label}>Pressable as a TouchableHighlight</Text>
           <Pressable
-            onPress={() =>
-              setWithoutFeedbackPressed(withoutFeedbackPressed + 1)
-            }
+            onPress={() => setHighlightPressed(highlightPressed + 1)}
             style={({ pressed }) => [
               styles.button,
               {
@@ -54,7 +54,7 @@ function App() {
               },
             ]}>
             <Text style={styles.buttonText}>
-              {`${withoutFeedbackPressed} pressed`}
+              {`${highlightPressed} pressed`}
             </Text>
           </Pressable>
         </View>
